@@ -25,6 +25,10 @@ For Example You Need to Add a task so you can make pointers like these
 ## Submission Guidelines:
 
 Create a Google Doc outlining the identified APIs, including endpoint URLs, HTTP methods, expected request body formats, and expected responses.
+
 Include explanations for the reasoning behind each identified API.
+
 Provide a brief overview of how these APIs collectively fulfil the CRUD operations for a To-Do List app.
+
 Comment on any potential challenges you foresee in implementing these APIs.
+
