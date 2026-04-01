@@ -1,8 +1,6 @@
 const express = require('express');
 const {v4: uuidv4} = require('uuid');
-
 const Router = express.Router()
-
 const { todos } = require('../content/Todo-list.json')
 
 
@@ -39,20 +37,11 @@ Router.post('/list',(req,res)=>{
     const { title, content, completed } = req.body;
 
     if(!title || !content || completed === undefined){
-        return res.status(404).json({
+        return res.status(400).json({
             success : false,
             message : "Please provide all the fields"
         })
     }
-
-    // const todo = todos.find((each)=>each.id === id)
-    // if(todo){
-    //     return res.status(404).json({
-    //         success : false ,
-    //         message : `To-do list with  ID:${id} already exists`
-    //     })
-    // }
-
     todos.push({id : uuidv4() ,title ,content ,completed})
     res.status(201).json({
         success : true ,
@@ -73,10 +62,8 @@ Router.put('/list/:id',(req,res)=>{
         })
     }
     const allowedUpdation = ["title","content" ,"completed"];
-
-const update = Object.keys(req.body);
-
-const isValided = update.every(field => allowedUpdation.includes(field));
+    const update = Object.keys(req.body);
+    const isValided = update.every(field => allowedUpdation.includes(field));
 
 if (!isValided) {
     return res.status(400).json({
@@ -109,7 +96,7 @@ Router.delete('/list/:id',(req,res)=>{
     const deletetodo = todos.filter((each)=>each.id !== id)
     res.status(200).json({
         success:true,  
-        data:deletetodo,
+        data: deletetodo,
         message:"Todo Deleted Successfully"
     })
 })
